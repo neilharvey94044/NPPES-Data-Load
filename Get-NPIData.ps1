@@ -1,0 +1,1 @@
+https://download.cms.gov/nppes/NPPES_Data_Dissemination_March_2020.zip
