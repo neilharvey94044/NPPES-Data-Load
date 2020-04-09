@@ -1,3 +1,6 @@
+# Starts SQL Server 2019 in a Docker container
+# Mounts data and logs onto the d: drive for my machine where there is more space
+#TODO: stash the password before committing to Github
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Bracket4Tree@" `
    -v d:\sql1\data:/var/opt/mssql/data `
    -v d:\sql1\logs:/var/opt/mssql/log `

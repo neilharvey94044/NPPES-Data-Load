@@ -1,4 +1,6 @@
 USE NPPES
+DROP TABLE [dbo].[npidata_stage];
+GO
 CREATE TABLE [dbo].[npidata_stage] (
 	[NPI] numeric,
 	[Entity_Type_Code] int,
@@ -330,4 +332,5 @@ CREATE TABLE [dbo].[npidata_stage] (
 	[Healthcare_Provider_Taxonomy_Group_14] varchar(70),
 	[Healthcare_Provider_Taxonomy_Group_15] varchar(70),
 	[Certification_Date] varchar(20)
-)
+);
+GO

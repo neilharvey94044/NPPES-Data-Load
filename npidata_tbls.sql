@@ -1,5 +1,6 @@
 USE NPPES
 DROP TABLE [dbo].[npidata];
+GO
 CREATE TABLE [dbo].[npidata] (
 	[NPI] numeric,
 	[Entity_Type_Code] int,
@@ -57,11 +58,11 @@ CREATE TABLE [dbo].[npidata] (
 	[Authorized_Official_Credential_Text] varchar(20),
     [Certification_Date] date
 )
-USE NPPES
 CREATE INDEX npi_idx on [dbo].[npidata] (NPI);
+GO
 
-USE NPPES
 DROP TABLE [dbo].[npi_taxonomy];
+GO
 CREATE TABLE [dbo].[npi_taxonomy] (
 	[NPI] numeric,
 	[Healthcare_Provider_Taxonomy_Code] varchar(10),
@@ -70,11 +71,11 @@ CREATE TABLE [dbo].[npi_taxonomy] (
 	[Healthcare_Provider_Primary_Taxonomy_Switch] varchar(1),
     [Healthcare_Provider_Taxonomy_Group] varchar(45)
 )
-USE NPPES
 CREATE INDEX npi_tax_idx on [dbo].[npi_taxonomy] (NPI);
+GO
 
-USE NPPES
 DROP TABLE [dbo].[npi_oth_prov];
+GO
 CREATE TABLE [dbo].[npi_oth_prov] (
 	[NPI] numeric,
 	[Other_Provider_Identifier] varchar(20),
@@ -82,5 +83,5 @@ CREATE TABLE [dbo].[npi_oth_prov] (
 	[Other_Provider_Identifier_State] varchar(2),
 	[Other_Provider_Identifier_Issuer] varchar(80)
 )
-USE NPPES
 CREATE INDEX npi_oth_prov_idx on [dbo].[npi_oth_prov] (NPI);
+GO

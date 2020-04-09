@@ -1,4 +1,6 @@
 USE NPPES
+CREATE TABLE [dbo].[prov_loc];
+GO
 CREATE TABLE [dbo].[prov_loc] (
 	[NPI] numeric,
 	[Provider_Secondary_Practice_Location_Address_Line1] varchar(55),
@@ -12,3 +14,4 @@ CREATE TABLE [dbo].[prov_loc] (
 	[Provider_Secondar_Practice_Location_Address_Fax_Number] varchar(20),
 )
 CREATE INDEX prov_loc_idx on [dbo].[prov_loc] (NPI);
+GO
