@@ -1,8 +1,10 @@
+#Requires -Version 7.0
 # Creates the NPPES tables
 # CAUTION!!! - DROPS ALL THE EXISTING TABLES USED BY THIS DATA LOAD
-$user = "sa"
-$pswd = "Bracket4Tree@"
-$server = "127.0.0.1"
+$sqlparms = ./Get-SQLCredential.ps1
+$user   = $sqlparms['userid']
+$pswd   = $sqlparms['password']
+$server = $sqlparms['server']
 
 Write-Host "Processing nppes_database.sql"
 sqlcmd -e -i nppes_database.sql -S $server -U $user -P $pswd 

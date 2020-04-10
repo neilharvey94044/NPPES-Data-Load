@@ -1,14 +1,21 @@
 #Requires -Version 7.0
+#TODO: make filter optional in this script
 Param ( [Parameter(Mandatory=$True)] [ValidateNotNull()] [string] $npifilename, `
         [Parameter(Mandatory=$True)] [ValidateNotNull()] [string] $filtercol, `
         [Parameter(Mandatory=$True)] [ValidateNotNull()] [string] $filterval `
        )
 
-# Parameters hardcoded for development
-#$csvfilename = "D:\dev\Health_Data\NPPES\NPPES_Data_Dissemination_March_2020\npidata_pfile_20050523-20200308.csv"
 [int] $numcols = 330 # update this value if number of columns in input file changes
+
+# Parameters hardcoded for development and reference
 #[string] $filtercol = "col32"
 #[string] $filterval = "CA"
+
+# Get SQL credentials
+$sqlparms = ./Get-SQLCredential.ps1
+$server = $sqlparms['server']
+$user   = $sqlparms['userid']
+$pswd   = $sqlparms['sserver']
 
 
 [string[]] $csvheader= @()
@@ -23,4 +30,6 @@ Where-Object {$_.$filtercol -eq $filterval} | `
 ForEach-Object { write-progress -Id 1 -Activity Writing -Status "Record: $lineout"; $lineout++; Write-Output $_} | `
 ConvertTo-Csv -UseQuotes Never -Delimiter '|' | Select-Object -Skip 1 | Out-File -FilePath tmp_npi.dat
 
-bcp NPPES.dbo.npidata IN tmp_npi.dat -f npi_format.xml -e error.dat -m 10 -U sa -P Bracket4Tree@ -S 127.0.0.1
+Write-Host "Loading npidata into SQL Server using bcp..."
+bcp NPPES.dbo.npidata IN tmp_npi.dat -f npi_format.xml -e error.dat -m 10 -U $user -P $pswd -S $server
+

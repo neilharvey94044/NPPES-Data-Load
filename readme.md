@@ -38,4 +38,4 @@ The National Plan and Provider Enumeration System (NPPES) maintains identifiers 
 
 
   #### See Also
-  ### ????? Project - a REST API against the npidata written in c# using ASP.NET Core.
+  ### ????? Project - a REST API for the npidata.  Written in c# using ASP.NET Core.
