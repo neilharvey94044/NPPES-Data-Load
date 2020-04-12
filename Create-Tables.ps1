@@ -12,8 +12,6 @@ Write-Host "Processing npidata_stage_tbl.sql"
 sqlcmd -e -i npidata_stage_tbl.sql -S $server -U $user -P $pswd 
 Write-Host "Processing npidata_tbls.sql"
 sqlcmd -e -i npidata_tbls.sql -S $server -U $user -P $pswd 
-Write-Host "Processing prov_loc_stage_tbl.sql"
-sqlcmd -e -i prov_loc_stage_tbl.sql -S $server -U $user -P $pswd 
 Write-Host "Processing prov_loc_tbl.sql"
 sqlcmd -e -i prov_loc_tbl.sql -S $server -U $user -P $pswd 
 Write-Host "Processing txcodes_tbl.sql"
