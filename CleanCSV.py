@@ -4,7 +4,6 @@ import csv, sys
 # The output file does not quote columns and uses the pipe delimiter.
 # Command line as follows:
 # python CleanCSV.py <input file name> <output file name> <col number> <filter value>
-#TODO: make filtering optional
 
 
 inputfile, outputfile = sys.argv[1], sys.argv[2]
@@ -19,12 +18,12 @@ else:
 
 writecount, readcount, fldnum = 0, 0, 0
 
-print("NPI Input File      :", inputfile)
-print("Temp NPI Output File:", outputfile)
+print("Input File :", inputfile)
+print("Output File:", outputfile)
 
 with open(inputfile, mode='r') as csvinfile, \
 	 open(outputfile, mode='w', newline='') as csvoutfile:
-	datawriter = csv.writer(csvoutfile, delimiter='|', quoting=csv.QUOTE_NONE)
+	datawriter = csv.writer(csvoutfile, delimiter='|', quoting=csv.QUOTE_NONE, escapechar='\\')
 	datareader = csv.reader(csvinfile)
 	for row in datareader:
 		readcount += 1
@@ -39,3 +38,5 @@ with open(inputfile, mode='r') as csvinfile, \
 		else:
 			datawriter.writerow(row)
 			writecount += 1
+
+print("Records read:   ", readcount, "\nRecords written:", writecount)

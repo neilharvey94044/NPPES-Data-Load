@@ -9,7 +9,7 @@
 # This script assumes you have already captured your SQL Server credentials
 # into password.json by running the script Put-SQLCredential.ps1
 
-# URI for the Taxonomy codes - could change
+# URI for the Taxonomy codes - likely to change
 $txcodesURI = "http://www.nucc.org/images/stories/CSV/nucc_taxonomy_200.csv"
 
 # Step 1 - Download the necessary data
@@ -23,15 +23,15 @@ $txcodesURI = "http://www.nucc.org/images/stories/CSV/nucc_taxonomy_200.csv"
 
 # Step 4 - Filter and load the NPI data
 #$npifilename = (Get-ChildItem npidata_pfile*.csv | Where-Object Name -NotLike "*FileHeader.csv").Name
-#./Process-NPIData.ps1 $npifilename "col32" "CA"
+#./Process-NPIData.ps1 $npifilename 31 "CA"
 
 # Step 5 - Refactor the NPI data
 #./Refactor-NPIData.ps1
 
 # Step 6 - Load the taxonomy codes
-#$txcodesFileName = ([URI] $txcodesURI).LocalPath | Split-Path -Leaf
+$txcodesFileName = ([URI] $txcodesURI).LocalPath | Split-Path -Leaf
 #./Process-TaxonomyCodes.ps1 $txcodesFileName
 
 # Step 7 - Load the Provider Location file
 $plfilename = (Get-ChildItem pl_pfile*.csv | Where-Object Name -NotLike "*FileHeader.csv").Name
-./Process-ProvLocData.ps1 $plfilename "col5" "CA"
+./Process-ProvLocData.ps1 $plfilename 4 "CA"

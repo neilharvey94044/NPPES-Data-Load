@@ -116,6 +116,7 @@ select
 	cast(Certification_Date as date)
 
 from dbo.npidata_stage;
+GO
 
 -- Denormalize the taxonomy (aka provider specialty) fields into a separate table
 -- This approach uses dynamic SQL to minimize redundancy in the code
@@ -154,16 +155,17 @@ BEGIN
     EXEC sp_executesql @sql;
 	SET @counter = @counter + 1;
 END
+GO
 
 --
 -- Denormalize the Other Provider information
 --
 --
 USE NPPES
-DECLARE @template nvarchar(max);
-DECLARE @sql nvarchar(max);
+DECLARE @template2 nvarchar(max);
+DECLARE @sql2 nvarchar(max);
 
-SET @template = N'
+SET @template2 = N'
 
 insert into dbo.npi_oth_prov (
 	NPI,
@@ -182,17 +184,18 @@ select
 from dbo.npidata_stage stage
 where stage.Other_Provider_Identifier_@anchor IS NOT NULL;'
 
-DECLARE @offset nvarchar(4);
-DECLARE @counter INT = 1;
+DECLARE @offset2 nvarchar(4);
+DECLARE @counter2 INT = 1;
  
-WHILE @counter <= 50
+WHILE @counter2 <= 50
 BEGIN
-    SET @offset = ltrim(str(@counter));
-	SET @sql = @template;
-	SET @sql = REPLACE(@sql, '@anchor', @offset);
-    EXEC sp_executesql @sql;
-	SET @counter = @counter + 1;
+    SET @offset2 = ltrim(str(@counter2));
+	SET @sql2 = @template2;
+	SET @sql2 = REPLACE(@sql2, '@anchor', @offset2);
+    EXEC sp_executesql @sql2;
+	SET @counter2 = @counter2 + 1;
 END
+GO
 
 -- Update Statistics on the tables loaded
 USE NPPES
