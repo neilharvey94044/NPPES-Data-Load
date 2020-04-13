@@ -13,24 +13,24 @@
 $txcodesURI = "http://www.nucc.org/images/stories/CSV/nucc_taxonomy_200.csv"
 
 # Step 1 - Download the necessary data
-#./Get-NPIData.ps1 "March" "2020" $txcodesURI
+./Get-NPIData.ps1 "March" "2020" $txcodesURI
 
 # Step 2 - Start the SQL Server instance in Docker
 #./Start-SQLServer.ps1
 
 # Step 3 - Create the required tables
-#./Create-Tables.ps1
+./Create-Tables.ps1
 
 # Step 4 - Filter and load the NPI data
-#$npifilename = (Get-ChildItem npidata_pfile*.csv | Where-Object Name -NotLike "*FileHeader.csv").Name
-#./Process-NPIData.ps1 $npifilename 31 "CA"
+$npifilename = (Get-ChildItem npidata_pfile*.csv | Where-Object Name -NotLike "*FileHeader.csv").Name
+./Process-NPIData.ps1 $npifilename 31 "CA"
 
 # Step 5 - Refactor the NPI data
-#./Refactor-NPIData.ps1
+./Refactor-NPIData.ps1
 
 # Step 6 - Load the taxonomy codes
 $txcodesFileName = ([URI] $txcodesURI).LocalPath | Split-Path -Leaf
-#./Process-TaxonomyCodes.ps1 $txcodesFileName
+./Process-TaxonomyCodes.ps1 $txcodesFileName
 
 # Step 7 - Load the Provider Location file
 $plfilename = (Get-ChildItem pl_pfile*.csv | Where-Object Name -NotLike "*FileHeader.csv").Name
