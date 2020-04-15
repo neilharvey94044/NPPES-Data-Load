@@ -27,7 +27,7 @@ At time of this writing Taxonomy Codes can be found at [Taxonomy Codes](http://w
 
 #### Files and Steps
 - **Put-SQLCredential.ps1**
-  - Run this script to capture your SQL server credentials and server name.  These are encrypted, stored in password.json, and will automatically be used by all subsequent scripts.
+  - Run this script to capture your SQL server credentials and server name.  These are encrypted, stored in passwords.json, and will automatically be used by all subsequent scripts.
 - **RunRefresh.ps1**
   - Runs all child scripts and processes necessary to download, cleans, reformat, create necessary tables, and load the data.  Review the steps in this script to determine what steps to uncomment.  For example, starting the SQL Server instance is commented out.
 
