@@ -49,3 +49,4 @@ Select prov.NPI
  Declare @npivalues npilist;
  Insert into @npivalues select @NPI;
  Execute sp_provider @npivalues;
+ GO

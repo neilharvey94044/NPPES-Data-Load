@@ -28,8 +28,7 @@ AS
 		Select geo.NPI
 		 From dbo.npigeo as geo, dbo.npidata as npi
 		Where @geopoint.STDistance(geo.Geopoint) < @MetersPerMile*@distance
-				and geo.NPI = npi.NPI
-				and npi.Entity_Type_Code = 1;
+				and geo.NPI = npi.NPI;
 GO
 
 -- Returns Provider details for those providers within @distance in miles
@@ -46,4 +45,5 @@ AS
 
 		-- Get Details about the Providers
 		Execute sp_provider @npivalues;
+GO
 
